@@ -46,7 +46,7 @@ def period_start(program_rows, vc):
             v = fnum(r["motor_2r"])
             by_day[r["date"]].append(v or 0.0)
     reset = [d for d, vals in by_day.items() if vals and st.median(vals) <= 3.0]
-    return max(reset) if reset else (min(by_day) if by_day else None)  # 切替が見つからなければ番組表の最初の日から
+    return min(reset) if reset else (min(by_day) if by_day else None)  # 切替が見つからなければ番組表の最初の日から
 
 
 def race_diffs(results):
