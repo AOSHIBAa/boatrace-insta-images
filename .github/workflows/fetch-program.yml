@@ -20,7 +20,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: fetch-results
+  group: fetch-program
   cancel-in-progress: false
 
 jobs:
