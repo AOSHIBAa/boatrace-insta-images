@@ -32,7 +32,7 @@ def main():
     else:
         start, end = yesterday - timedelta(days=120), yesterday
     OUT.mkdir(parents=True, exist_ok=True)
-    dl = LzhDownloader(cache_dir=".cache", max_workers=1)
+    dl = LzhDownloader(cache_dir=".cache", max_workers=1, timeout=20)
     parser = PerformanceParser()
     for d in days(start, end):
         out = OUT / f"{d.isoformat()}.csv"
@@ -44,7 +44,7 @@ def main():
             print(f"{d}: skip ({e})")
             continue
         if not files:
-            print(f"{d}: no file")
+            print(f"{d}: no file", flush=True)
             continue
         res = parser.parse(files)
         names = {r.racer_number: getattr(r, "name", "") for r in res.racers} if res.racers else {}
@@ -68,7 +68,7 @@ def main():
             w = csv.DictWriter(f, fieldnames=FIELDS)
             w.writeheader()
             w.writerows(rows)
-        print(f"{d}: {len(rows)} rows")
+        print(f"{d}: {len(rows)} rows", flush=True)
         time.sleep(2)  # 配信サーバーに負荷をかけない
 
 
