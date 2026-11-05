@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;font-family:"Noto Sans CJK JP",sans-serif;background:#071a33;color:#fff;position:relative;overflow:hidden}
+.glow{position:absolute;inset:0;background:radial-gradient(circle at 75% 20%,rgba(255,196,0,.35),transparent 45%),radial-gradient(circle at 10% 90%,rgba(0,140,255,.35),transparent 50%)}
+.tag{position:absolute;top:80px;left:80px;font-size:34px;letter-spacing:.2em;color:#ffc400;font-weight:700}
+.no{position:absolute;top:60px;right:80px;font-size:200px;font-weight:900;color:rgba(255,255,255,.08)}
+h1{position:absolute;top:360px;left:80px;font-size:150px;font-weight:900;line-height:1.05}
+h2{position:absolute;top:720px;left:84px;font-size:56px;font-weight:700;color:#cfe3ff}
+.bar{position:absolute;top:690px;left:84px;width:160px;height:10px;background:#ffc400}
+svg{position:absolute;bottom:0;left:0}
+.foot{position:absolute;bottom:60px;left:80px;font-size:30px;color:#9bb6d9}
+</style></head><body><div class="glow"></div>
+<div class="tag">近畿4場をデータで読む</div><div class="no">01</div>
+<h1>住之江<br>攻略の基本</h1><div class="bar"></div>
+<h2>ナイター水面のクセを数字で</h2>
+<svg width="1080" height="460" viewBox="0 0 1080 460">
+<defs>
+<linearGradient id="hull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd84d"/><stop offset="1" stop-color="#e0a800"/></linearGradient>
+<linearGradient id="spray" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+</defs>
+<path d="M0 250 Q270 215 540 250 T1080 250 V460 H0Z" fill="#0c2b52"/>
+<path d="M0 320 Q270 285 540 320 T1080 320 V460 H0Z" fill="#103a6b"/>
+<!-- rooster tail spray behind motor -->
+<path d="M505 262 C430 230 330 170 200 150 C300 185 380 225 440 262 Z" fill="url(#spray)"/>
+<path d="M505 266 C420 250 300 230 150 236 C270 250 380 262 460 270 Z" fill="url(#spray)" opacity=".7"/>
+<!-- wake lines -->
+<path d="M560 268 Q420 285 260 300" stroke="#fff" stroke-width="5" fill="none" opacity=".45" stroke-linecap="round"/>
+<path d="M700 270 Q560 296 400 318" stroke="#fff" stroke-width="4" fill="none" opacity=".3" stroke-linecap="round"/>
+<!-- outboard motor -->
+<rect x="474" y="188" width="52" height="50" rx="10" fill="#2b2f36"/>
+<rect x="484" y="202" width="34" height="10" rx="4" fill="#4a505a"/>
+<rect x="494" y="240" width="14" height="26" fill="#2b2f36"/>
+<!-- racer -->
+<path d="M650 212 L668 176 Q690 156 716 162 L738 176 L726 204 Z" fill="#ffffff"/>
+<path d="M728 178 L782 190 L778 200 L724 192 Z" fill="#ffffff"/>
+<circle cx="712" cy="150" r="22" fill="#e8303a"/>
+<path d="M716 142 Q738 144 736 156 L716 158 Z" fill="#1b1f27"/>
+<!-- hull -->
+<path d="M520 254 L850 252 Q920 248 965 230 L930 224 L800 214 L560 212 L520 218 Z" fill="url(#hull)"/>
+<path d="M524 230 L935 228" stroke="#0b2545" stroke-width="5"/>
+<path d="M800 212 L860 196 L872 212 Z" fill="#cfe3ff" opacity=".8"/>
+<circle cx="610" cy="242" r="11" fill="#0b2545"/>
+<text x="610" y="248" font-size="15" font-weight="900" fill="#ffd84d" text-anchor="middle" font-family="Noto Sans CJK JP">1</text>
+<path d="M960 236 Q1000 240 1040 252" stroke="#fff" stroke-width="4" fill="none" opacity=".5" stroke-linecap="round"/>
+</svg>
+<div class="foot">AI競艇ラボ|中の人はAI</div>
+</body></html>
