@@ -10,7 +10,7 @@
 - 費用のかかるもの(有料API、有料プラン)は使わない。
 
 ## データ
-GitHub Actions が毎朝 6:07〜6:27(JST)に公式データを取り込む。
+GitHub Actions が毎朝 6:07〜6:27(JST)予定で公式データを取り込む。GitHub側の混雑で実際は10時前後までずれることがあるため、このタスクは12時台に動く。
 - `data/results/日付.csv`:競走成績(モーター番号、展示タイム、進入、ST、着順、風・波)
 - `data/program/日付.csv`:番組表(選手、級別、勝率、モーター・ボートの2連対率)。当日分も入る
 - `data/payouts/日付.csv`:払戻金。※複勝は1艇分しか入っていない・人気順は空(ライブラリの制約)。複勝と人気は使わない
@@ -18,7 +18,7 @@ GitHub Actions が毎朝 6:07〜6:27(JST)に公式データを取り込む。
 - `scripts/analyze_payouts.py 場名:番号 ...`:指定モーターの単勝回収率・3連単配当・万舟
 
 ## 毎朝の手順
-1. `git pull`。当日の `data/program/今日.csv` と前日の `data/results` があるか確認。なければ GitHub Actions の実行状況を確認し、ないまま進めない。
+1. `git pull`。当日の `data/program/今日.csv` と前日の `data/results` があるか確認。なければ `gh run list` で GitHub Actions の実行状況を確認し、実行中なら最大20分待って再度 pull する。それでもなければ進めず、ユーザーに知らせる。
 2. `python3 scripts/analyze_motors.py` を実行し、`motors.json` を更新してコミット。
 3. 今日の近畿4場の開催と出走を確認し、**ネタを1本だけ**選ぶ。候補(上から優先):
    - その日のGⅠ・GⅡ・SG・GⅢ:出場選手のモーターを機歴で格付け(速い機/隠れ上位/数字ほど出ていない)
@@ -29,7 +29,7 @@ GitHub Actions が毎朝 6:07〜6:27(JST)に公式データを取り込む。
 4. 画像を作る:`scripts/slides.py` の部品で 5〜7 枚。1枚目は `cover()`、最後は「まとめ」+ `DISCLAIMER`。各ページの `src` に出典と集計期間を書く。保存先は `images/posts/YYYY-MM-DD-短い英語名/`。
 5. `/tmp/contact.png` を Read で必ず目視し、文字のはみ出し・重なり・空白の崩れを直す。
 6. **レビュー**:別のエージェント(Agent ツール)に、画像の数字と `motors.json`・CSV の数字の突き合わせ、誤字、選手名・号機の取り違え、誇大表現(「必勝」「稼げる」「確実」など)がないかを確認させ、指摘を直す。
-7. 画像をコミットして push。`https://raw.githubusercontent.com/AOSHIBAa/boatrace-insta-images/main/<パス>` を Metricool の `createScheduledPost` に渡す。`draft: true`、`autoPublish: true`、公開予定はその日の 10:00〜12:00 か 19:00〜21:00。キャプションには要点、出典、「このアカウントは中の人がAI(Claude)です」、20歳以上の注意書き、ハッシュタグ 8〜10 個。
+7. 画像をコミットして push。`https://raw.githubusercontent.com/AOSHIBAa/boatrace-insta-images/main/<パス>` を Metricool の `createScheduledPost` に渡す。`draft: true`、`autoPublish: true`、公開予定はその日の 19:00〜21:00(ユーザーが確認する時間を残すため、作成から最低5時間あける)。キャプションには要点、出典、「このアカウントは中の人がAI(Claude)です」、20歳以上の注意書き、ハッシュタグ 8〜10 個。
 8. `data/posts_log.csv` に1行追加(status は `draft`)してコミット。
 9. ユーザーに、ネタ・公開予定時刻・Metricool のリンク(plannerUrl)・確認してほしい点を短く知らせる。
 
