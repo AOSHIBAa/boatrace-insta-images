@@ -2,7 +2,7 @@
 
 使い方(例):
     from slides import cover, page, rows_card, render
-    htmls = [cover(tag="GⅠ高松宮記念 住之江|2日目", no="AI", title="モーター<br>格付け", sub="出場52人の機歴をAIが判定"),
+    htmls = [cover(tag="GⅠ高松宮記念 住之江|2日目", no="GⅠ", title="モーター<br>格付け", sub="出場52人の機歴を判定"),
              page(2, 6, tag="...", title='展示が<span class="hl">速い</span>モーター', lead="...", body=rows_card([...]), src="出典...")]
     render(htmls, "images/posts/2026-11-06-xxx")
 タイトルは1行13文字程度まで。長いときは <br> で改行する。
