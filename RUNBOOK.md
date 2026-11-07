@@ -29,7 +29,7 @@ GitHub Actions が毎朝 6:07〜6:27(JST)予定で公式データを取り込む
    - `data/posts_log.csv` の直近7日と同じネタは避ける。今月の予約が上限に近ければ投稿しない日にしてよい。
 4. 画像を作る:`scripts/slides.py` の部品で 5〜7 枚。1枚目は `cover()`、最後は「まとめ」+ `DISCLAIMER`。各ページの `src` に出典と集計期間を書く。保存先は `images/posts/YYYY-MM-DD-短い英語名/`。
 5. `/tmp/contact.png` を Read で必ず目視し、文字のはみ出し・重なり・空白の崩れを直す。
-6. **レビュー**:別のエージェント(Agent ツール)に、画像の数字と `motors.json`・CSV の数字の突き合わせ、誤字、選手名・号機の取り違え、誇大表現(「必勝」「稼げる」「確実」など)がないかを確認させ、指摘を直す。
+6. **レビュー**:別のエージェント(Agent ツール)に、画像の数字と `motors.json`・CSV の数字の突き合わせ、誤字、選手名・号機の取り違え、誇大表現(「必勝」「稼げる」「確実」など)や「AI」「Claude」の文言が入っていないかを確認させ、指摘を直す。
 7. `python3 scripts/make_reel.py images/posts/<フォルダ>` で同じ画像から縦長のリール動画 `reel.mp4` を作る。
 8. 画像と動画をコミットして push。`https://raw.githubusercontent.com/AOSHIBAa/boatrace-insta-images/main/<パス>` を Metricool の `createScheduledPost` に渡す。`draft: true`、`autoPublish: true`、公開予定はその日の 19:00〜21:00(ユーザーが確認する時間を残すため、作成から最低5時間あける)。キャプションには要点、出典、20歳以上の注意書き、ハッシュタグ 8〜10 個。続けて、同じ内容のお試しリールを `createScheduledPost` で別に予約する(`media` に reel.mp4 のURL、`instagramData.type` は `TRIAL_REEL`、`draft: true`、公開予定はカルーセルの30分後)。TRIAL_REEL が拒否されたら `REEL` にする。
 9. `data/posts_log.csv` に予約ごとに1行ずつ追加(status は `draft`、topic の末尾にカルーセル/リールの別)してコミット。
